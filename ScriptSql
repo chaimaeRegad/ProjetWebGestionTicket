@@ -1,0 +1,147 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : 127.0.0.1
+-- Généré le :  mer. 11 mars 2020 à 11:18
+-- Version du serveur :  10.1.35-MariaDB
+-- Version de PHP :  7.2.9
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données :  `gestionticket`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ticket`
+--
+
+CREATE TABLE `ticket` (
+  `ID` int(11) NOT NULL,
+  `IDuser` int(11) DEFAULT NULL,
+  `Titre` varchar(25) NOT NULL,
+  `DateOuverture` datetime NOT NULL,
+  `DateFermeture` datetime NOT NULL,
+  `Etat` varchar(25) NOT NULL,
+  `Description` varchar(600) NOT NULL,
+  `Reponse` varchar(200) DEFAULT NULL,
+  `AdminID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `ticket`
+--
+
+INSERT INTO `ticket` (`ID`, `IDuser`, `Titre`, `DateOuverture`, `DateFermeture`, `Etat`, `Description`, `Reponse`, `AdminID`) VALUES
+(74, 34, 'pain mauvais', '2020-02-11 22:14:17', '0000-00-00 00:00:00', 'ouvert', 'je viens me plaindre, le pain est tres dure', NULL, 0),
+(75, 34, 'boisson', '2020-02-11 22:14:47', '0000-00-00 00:00:00', 'ouvert', 'ce matin la boisson etait tres froid', NULL, 0),
+(76, 34, 'pizza', '2020-02-11 22:15:44', '0000-00-00 00:00:00', 'ouvert', 'la pizza est trop jaune', NULL, 0),
+(77, 34, 'bonbon', '2020-02-11 22:16:26', '0000-00-00 00:00:00', 'Annulé', 'les bonbons sont perimé depuis l\'an dernier c\'est inadmisible', NULL, 0),
+(78, 23, 'tacos', '2020-02-11 22:21:16', '0000-00-00 00:00:00', 'ouvert', 'le pain du tacos sont toujours moelleux et non croustillant', NULL, 0),
+(79, 23, 'kebab', '2020-02-11 22:22:19', '0000-00-00 00:00:00', 'ouvert', 'j\'aime bien les kebab mais manquent toujours de sauce', NULL, 0),
+(80, 21, 'frittes', '2020-02-11 22:26:19', '0000-00-00 00:00:00', 'ouvert', 'les frittes sont pas bien cuitte desolé pour vous', NULL, 0),
+(81, 21, 'riz', '2020-02-11 22:27:14', '0000-00-00 00:00:00', 'ouvert', 'le riz est trop cuit. passez a lui enlever du feu avant', NULL, 0),
+(82, 21, 'viande', '2020-02-11 22:27:57', '0000-00-00 00:00:00', 'ouvert', 'viande est pouris degeulas', NULL, 0),
+(83, 21, 'lait', '2020-02-11 22:28:27', '0000-00-00 00:00:00', 'ouvert', 'le lait que vous servez sont tres sucrée', NULL, 0),
+(84, 21, 'poulet', '2020-02-11 22:29:32', '0000-00-00 00:00:00', 'ouvert', 'poulet pas bien nettoyer', NULL, 0),
+(85, 21, 'poisson', '2020-02-11 22:30:06', '0000-00-00 00:00:00', 'Annulé', 'je trouve que les poissons on une odeur desagreable', NULL, 0),
+(86, 22, 'spagettie', '2020-02-11 22:35:07', '0000-00-00 00:00:00', 'ouvert', 'les spagetties sont tres colante, j\'aime pas', NULL, 0),
+(87, 22, 'oeuf', '2020-02-11 22:37:21', '2020-02-11 22:59:43', 'fermé', 'les oeufs sont trop pas bonne j\'ai eu une grosse diareh ce matin', 'compris', 32),
+(88, 22, 'doritos', '2020-02-11 22:39:09', '2020-02-11 22:52:15', 'fermé', 'votre fourniseur n\'a pas fait attention a la date d\'expiration ', 'je prenprais contacte avec lui imadiatement', 32),
+(89, 34, 'pain', '2020-02-13 08:38:35', '2020-02-13 08:39:57', 'fermé', 'mauvais', 'daccord', 32);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `utilisateur`
+--
+
+CREATE TABLE `utilisateur` (
+  `ID` int(11) NOT NULL,
+  `Nom` varchar(25) NOT NULL,
+  `Prenom` varchar(25) NOT NULL,
+  `mdp` varchar(200) NOT NULL,
+  `email` varchar(25) NOT NULL,
+  `fonction` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`ID`, `Nom`, `Prenom`, `mdp`, `email`, `fonction`) VALUES
+(21, 'regad', 'chaimae', '\'9a900f538965a426994e1e90600920aff0b4e8d2\'', '\'regadc@3il.fr\'', 'E'),
+(22, 'kao', 'hermann', '\'0192c88297d92fff012195b74f1352084605e38b\'', '\'kaoh@3il.fr\'', 'E'),
+(23, 'karl', 'dine', '\'93969fe4adc98377deaef0a40bda0ddf858e041c\'', '\'karld@3il.fr\'', 'E'),
+(24, 'smail', 'kaskous', '\'4e781ce8f37dc4f587c4db0b409d3efa8bd9e7be\'', '\'ismailk@3il.fr\'', 'E'),
+(25, 'regad', 'abdellah', '\'b233b37c39a5a8e826c0f851bfcbb87ffc6e88f0\'', '\'regada@3il.fr\'', 'E'),
+(26, 'regad', 'ikram', '\'f794d5e92d1cc912ec4bebefc5b70ef5735a8a52\'', '\'regadi@3il.fr\'', 'E'),
+(27, 'kao', 'lidia', '\'a70dbdb1bc509617742e74a89c614a4c334983d2\'', '\'lidia@3il.fr\'', 'A'),
+(28, 'kao', 'julien', '\'73f541163d8e0ac6d78c3b2621344c436f0e93bf\'', '\'julien@3il.fr\'', 'A'),
+(29, 'regad', 'jilali', '\'11a93d868e8047394fe1091617ba218501ff6315\'', '\'jilali@3il.fr\'', 'A'),
+(30, 'kao', 'moise', '\'3d3b39b34c7c6448e1270b9dbd2d3ba72e856f8d\'', '\'moise@3il.fr\'', 'E'),
+(31, 'kao', 'rachel', '\'fd4b4c8a8d84c7898ce63a62a7815a132d1dbf7d\'', '\'rachel@3il.fr\'', 'E'),
+(32, 'dardour', 'najat', '\'293c6bcb2b79125e536787ebac16e45028533c1e\'', '\'najat@3il.fr\'', 'A'),
+(33, 'dardour', 'soufiane', '\'e4acb435b29e1314e5cbd0c4cbaec3ace7768696\'', '\'soufiane@3il.fr\'', 'E'),
+(34, 'anass', 'joanel', '\'9352320b8b5704a9b53cbaa42716c8cc376f56dd\'', '\'anass@3il.fr\'', 'E'),
+(35, 'abdellali', 'abdela', '\'b7e08164033700cb0395ae5ba86366723e8190b6\'', '\'abdela@3il.fr\'', 'A');
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `ticket`
+--
+ALTER TABLE `ticket`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `par_ind` (`IDuser`);
+
+--
+-- Index pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `ticket`
+--
+ALTER TABLE `ticket`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+
+--
+-- AUTO_INCREMENT pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `ticket`
+--
+ALTER TABLE `ticket`
+  ADD CONSTRAINT `ticket_ibfk_1` FOREIGN KEY (`IDuser`) REFERENCES `utilisateur` (`ID`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
